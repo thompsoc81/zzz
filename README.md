@@ -3,6 +3,9 @@
 
 This script provides an alternative to `sleep` for when the user would like to monitor the time remaining in the delay.  This is provided in both countdown (human-readable clock and total seconds) and countup (a progress bar and a percentage) on a single shell line.
 
+![screenshot](zzz_screenshot.png?raw=true)
+
+
 This was a fun little project that was born to solve two issues:  (1) the minor annoyance of running `sleep` for long periods of time with no idea how much time is remaining, and (2) wanting to learn how to reuse the same line of stdout to produce things like progress bars.  This was created in an evening and a little tinkering after a few days of use.  It has not been optimized or made free of errors.  Use with caution, etc.
 
 ---
@@ -92,4 +95,6 @@ The initial use case for this script was to replace calls to `sleep` in a suite 
 
 ### Public Domain
 
-This script is given freely into the public domain with all the standard "use at your own risk" disclaimers.  Well, technically it is [Creative Commons Zero](LICENSE) for this repository.
+This script is given freely into the public domain with all the standard "use at your own risk" disclaimers.
+
+(Well, technically it is [Creative Commons Zero](LICENSE) for this repository.)
