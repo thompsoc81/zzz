@@ -90,4 +90,4 @@ The initial use case for this script was to replace calls to `sleep` in a suite 
 
 ### Public Domain
 
-This script is given freely into the public domain with all the standard "use at your own risk" disclaimers.  Well, technically it is [Creative Commons Zero](https://github.com/thompsoc81/github-dl/blob/main/LICENSE) for this repository.
+This script is given freely into the public domain with all the standard "use at your own risk" disclaimers.  Well, technically it is [Creative Commons Zero](LICENSE) for this repository.
