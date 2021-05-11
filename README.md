@@ -63,7 +63,7 @@ After parsing all the arguments and converting them into one total number of sec
 
 _Doesn't calling `sleep` hundreds or thousands of times introduce a lot of inefficiency and overhead?_  **Yes!**
 
-As `sleep` itself doesn't guarantee exact timing, this script multiples each of those small margins of error by several magnitudes and introduces its own overhead to keep track of the total counter.  To make things worse, each iteration of the main loop calls numerous subshells.  This script was not written to be a minimal use of resources.
+As `sleep` itself doesn't guarantee exact timing, this script multiples each of those small margins of error by several magnitudes and introduces its own overhead to keep track of the total counter.  To make things worse, each iteration of the main loop calls numerous subshells.  This script was written with aesthetics in mind&mdash;not efficiency.
 
 ```
 $ strace -c -e trace=fork,vfork,clone,execve ./zzz.sh 60
