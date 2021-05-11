@@ -57,13 +57,26 @@ ln -s zzz.sh /usr/local/bin/zzz
 
 ---
 
-### How It Works
+### Maintaining Accuracy (Sort Of)
 
 After parsing all the arguments and converting them into one total number of seconds, it simply loops and calls the regular `sleep` at a set frequency&mdash;decrementing the total counter appropriately&mdash;until it reaches the end of the delay.  Regardless of what input format is used to specify the delay, they are all processed into a UNIX epoch timestamp which can have the current system clock timestamp subtracted to get the delay.
 
 _Doesn't calling `sleep` hundreds or thousands of times introduce a lot of inefficiency and overhead?_  **Yes!**
 
-As `sleep` itself doesn't guarantee exact timing, this script multiples each of those small margins of error by several magnitudes and introduces its own overhead to keep track of the total counter.  With long delay periods, this _will_ introduce a growing skew to the time remaining.  On a reasonably modern workstation, testing showed this to be a few seconds for each hour of the delay period.  For a Raspberry Pi 3 where it has been tested, this was the much less acceptable 15-20 seconds for every fifteen minutes of the delay period.
+As `sleep` itself doesn't guarantee exact timing, this script multiples each of those small margins of error by several magnitudes and introduces its own overhead to keep track of the total counter.  To make things worse, each iteration of the main loop calls numerous subshells.  This script was not written to be a minimal use of resources.
+
+```
+$ strace -c -e trace=fork,vfork,clone,execve ./zzz.sh 60
+
+% time     seconds  usecs/call     calls    errors syscall                    
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.011168          57       195           clone
+  0.00    0.000000           0         1           execve
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.011168                   196           total
+```
+
+With long delay periods, this _will_ introduce a growing skew to the time remaining.  On a reasonably modern workstation, testing showed this to be a few seconds for each hour of the delay period.  For a Raspberry Pi 3 where it has also been tested, this was a much less acceptable 15-20 seconds for every fifteen minutes of the delay period.
 
 The script attempts to correct for this drifting issue by resychronizing periodically to the system clock.  When the script starts, it calculates from the inputs what the expected end time should be and stores it for later use separately from the remaining countdown variable.  Periodically (the default is five minutes) it will recalculate from this known end time and the current system clock a new remaining countdown value.  This means that regardless of how long the total delay period is, the skew should never get more than a few seconds (i.e., only however much overhead drift occurs since the last recalibration).
 
