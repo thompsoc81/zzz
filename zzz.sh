@@ -339,7 +339,7 @@ while [ "${REMAINING}" -ge "${FREQ}" ]; do
     # having a tab, we need to clear out the line the first time because
     # the newly included tab will ridiculously skip over redrawing the
     # column where the old ")" of the countdown was, leaving it on the
-    # screen like this:  " (99,999 sec) ) [####"
+    # screen like this:  " (999,999 sec) ) [####"
     echo -en "                                 \r"
   fi
   
@@ -381,7 +381,7 @@ while [ "${REMAINING}" -ge "${FREQ}" ]; do
   
   # the way this script works will add a tiny bit of overhead on each
   # loop.  while it's probably negligable for short periods, a few ms
-  # each time for thousands of iterations can really add up over time.
+  # each loop for thousands of iterations can really add up over time.
   # anecdotally, the system where this script was developed tends to add
   # 2-3 seconds for every 15 minutes of countdown under normal, day-to-day 
   # cpu loads for a workstation.  on a raspberry pi where this script was
@@ -424,7 +424,7 @@ ${SLEEP} ${REMAINING}
 
 
 # the last progress update should have ended with an \r, but at 75+ chars,
-# that status line is going to be almost certainly longer than most users'
+# that status line is almost certainly going to be longer than most users'
 # $PS1 prompts.  one final output of a whole bunch of spaces (and \r) should 
 # clean it up so user doesn't see half a letover progress bar remaining on
 # the tail end of the same terminal line where their next prompt is drawn.

@@ -6,7 +6,7 @@ This script provides an alternative to `sleep` for when the user would like to m
 ![screenshot](zzz_screenshot.png?raw=true)
 
 
-This was a fun little project that was born to solve two issues:  (1) the minor annoyance of running `sleep` for long periods of time with no idea how much time is remaining, and (2) wanting to learn how to reuse the same line of stdout to produce things like progress bars.  This was created in an evening and a little tinkering after a few days of use.  It has not been optimized or made free of errors.  Use with caution, etc.
+This was a fun little project that was born to solve two issues:  (1) the minor annoyance of running `sleep` for long periods with no idea how much time is remaining, and (2) wanting to learn how to rewrite the same line of stdout to produce things like progress bars.  This was created in an evening and a little tinkering after a few days of use.  It has not been optimized or made free of errors.  Use with caution, etc.
 
 ---
 
@@ -49,7 +49,7 @@ $ zzz --help
 
 ### Installation
 
-The entire code is contained within the `zzz.sh` script.  Simply copy this into a member of `${PATH}` or create a symlink to it somewhere within `${PATH}`:
+The entire code is contained within the `zzz.sh` script.  Simply copy it into a member of `${PATH}` or create a symlink to it somewhere within `${PATH}`:
 
 ```
 ln -s zzz.sh /usr/local/bin/zzz
