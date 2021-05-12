@@ -87,13 +87,14 @@ The script attempts to correct for this drifting issue by resychronizing periodi
 ### Alternate Delay Formats
 
 #### Date Strings
-An idea for a feature that emerged early from initial use would be to support allowing the user to specify a specific end time instead of giving the length of the delay.  Luckily, modern verisons of the `date` command provide a good engine for processing a very wide spectrum of ways to write dates and times via its `-d` argument.  To make use of this feature, the first argument to `zzz` should start with `@`.  All the arguments (minus the `@`) are then concatenated into one string, fed into `date`, and returned to this script as a UNIX epoch timestamp.  Examples:
+An idea for a feature that emerged early from initial use would be to support allowing the user to specify a specific end time instead of giving the length of the delay.  Luckily, modern verisons of the `date` command provide a good engine for processing a very wide spectrum of ways to write dates and times via its `-d` argument.  To make use of this feature, the first argument to `zzz` should start with `@`.  All the arguments (minus the literal `@` character) are then concatenated into one string, fed into `date`, and returned to this script as a UNIX epoch timestamp.  Examples:
 
 ```
-        zzz.sh @9:15pm
+        zzz.sh @9:07pm
         zzz.sh @3:59am tomorrow
         zzz.sh @noon
         zzz.sh @friday 2pm
+        zzz.sh @jan 19, 2038 3:14am
 ```
 
 Details of what is allowed in the `date -d` format for a specific system can be found with `man date` and `info date`.  The manpage for `date` is intentionally vague with its description of what can be parsed:
