@@ -16,6 +16,8 @@
 # amount of overhead.  an attempt is made to correct for this drift
 # periodically but with the disclaimer: use as at your own risk.
 #
+# https://github.com/thompsoc81/zzz
+#
 # October 2020
 #
 
@@ -103,7 +105,7 @@ if [ $# -eq 0 ]; then
 fi
 
 
-# check if the user needs a hint about what to do
+# check if the user explicitly wants a hint about what to do
 if [[ "${1}" =~ ^(-h|--help) ]]; then
   arg_help
 
@@ -425,8 +427,8 @@ ${SLEEP} ${REMAINING}
 
 # the last progress update should have ended with an \r, but at 75+ chars,
 # that status line is almost certainly going to be longer than most users'
-# $PS1 prompts.  one final output of a whole bunch of spaces (and \r) should 
-# clean it up so user doesn't see half a letover progress bar remaining on
+# $PS1 prompts.  one final output of a whole line of spaces (and \r) should 
+# clean it up so user doesn't see half a leftover progress bar remaining on
 # the tail end of the same terminal line where their next prompt is drawn.
 CLEANUP="\r"
 for j in {1..78}; do
